@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Alert} from 'react-native';
 
 
 
@@ -41,12 +41,23 @@ export default class App extends Component<Props> {
     })
   }
 
+  handleGameOver = () => {
+    Alert.alert(
+      'Game OVER, Tubehead',
+      'Start over',
+      [
+        {text: 'Restart', onPress: () => this.randomItemGen() },
+      ],
+      { cancelable: false }
+    )
+  }
+
   checkItems = (item) => {
     if (this.state.keilsList[this.state.keilsList.length -1] === item) {
       console.log('hell yeah')
       this.randomItemGen()
     } else {
-      console.log('hell no, game over')
+      this.handleGameOver()
       this.setState({ keilsList: [] })
     }
   }
