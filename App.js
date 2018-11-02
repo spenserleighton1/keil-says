@@ -16,7 +16,7 @@ export default class App extends Component<Props> {
   constructor() {
     super()
     this.state = {
-      keilsMemory: [],
+      currentItem: '',
       keilsList: []
     }
   }
@@ -73,8 +73,8 @@ export default class App extends Component<Props> {
   displayKeilsList = () => {
     let { keilsList } = this.state
     setTimeout(() => {
-      keilsList.forEach(item => {
-        console.log(item)
+      keilsList.forEach(currentItem => {
+        this.setState({ currentItem })
       })
     }, 1000)
 
@@ -84,6 +84,7 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <Text>Welcome to Keil Says!</Text>
+        <Text>{ this.state.currentItem }</Text>
         <Button title='Melvin DIPA'
                 onPress={ () => this.handleButtonClick('melvin') } />
         <Button title='Sparkle the dog'
