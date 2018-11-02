@@ -49,11 +49,16 @@ export default class App extends Component<Props> {
   }
 
   handleGameOver = () => {
+    this.setState({ currentItem: '' })
     Alert.alert(
       'Game OVER, Tubehead',
       'Start over',
       [
-        {text: 'Restart', onPress: () => this.randomItemGen() },
+        {text: 'Restart', onPress: () => {
+          this.randomItemGen()
+          this.displayKeilsList()
+          }
+        },
       ],
       { cancelable: false }
     )
@@ -61,30 +66,31 @@ export default class App extends Component<Props> {
 
   checkItems = (item) => {
     let { keilsList } = this.state
+    let index = keilsList.length -1 
+    console.log(index)
 
-    if (keilsList[keilsList.length -1] === item) {
-      console.log('hell yeah')
+    if (keilsList[index] === item) {
       this.randomItemGen()
       this.displayKeilsList()
     } else {
-      this.handleGameOver()
       this.setState({ keilsList: [] })
+      this.handleGameOver()
     }
   }
 
   handleButtonClick = (item) => {
     this.checkItems(item)
-    console.log(this.state.keilsList)
   }
 
   displayKeilsList = () => {
     let { keilsList } = this.state
-    setTimeout(() => {
-      keilsList.forEach(currentItem => {
-        this.setState({ currentItem })
-      })
-    }, 1000)
 
+    keilsList.forEach(currentItem => {
+      setTimeout(() => {
+        console.log(currentItem)
+        this.setState({ currentItem })
+      }, 1000)
+    })
   }
 
   render() {
