@@ -16,8 +16,13 @@ export default class App extends Component<Props> {
   constructor() {
     super()
     this.state = {
-      keilsMemory: []
+      keilsMemory: [],
+      keilsList: []
     }
+  }
+
+  componentDidMount() {
+    this.randomItemGen()
   }
 
   randomItemGen = () => {
@@ -27,14 +32,19 @@ export default class App extends Component<Props> {
         3: 'ron',
         4: 'toes'
     }
-    
+
     let itemIndex = Math.round(Math.random() * 4);
     let item = keilsThings[itemIndex];
-    return item;
+
+    this.setState({
+      keilsList: [...this.state.keilsList, item]
+    })
   }
 
   handleButtonClick = (id) => {
     console.log(id)
+    console.log(this.state.keilsList)
+    
   }
 
   render() {
