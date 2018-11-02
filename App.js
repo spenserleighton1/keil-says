@@ -22,13 +22,15 @@ export default class App extends Component<Props> {
 
   randomItemGen = () => {
     let keilsThings = {
-        1: 'Melvin DIPA',
-        2: 'Sparkle the dog',
-        3: 'Captain Ron VHS tape',
-        4: 'Toes'
-      },
-    let itemIndex = Math.round(Math.random() * 4)
-    let item = keilsThings[itemIndex]
+        1: 'melvin',
+        2: 'sparkle',
+        3: 'ron',
+        4: 'toes'
+    }
+    
+    let itemIndex = Math.round(Math.random() * 4);
+    let item = keilsThings[itemIndex];
+    return item;
   }
 
   handleButtonClick = (id) => {
@@ -40,13 +42,13 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Text>Welcome to Keil Says!</Text>
         <Button title='Melvin DIPA'
-                onPress={ () => this.handleButtonClick('Melvin') } />
+                onPress={ () => this.handleButtonClick('melvin') } />
         <Button title='Sparkle the dog'
-                onPress={ () => this.handleButtonClick('Sparkle') } />
+                onPress={ () => this.handleButtonClick('sparkle') } />
         <Button title='Captain Ron VHS tape'
-                onPress={ () => this.handleButtonClick('Captain Ron') } />
+                onPress={ () => this.handleButtonClick('ron') } />
         <Button title='Toes'
-                onPress={ () => this.handleButtonClick('Toes') } />
+                onPress={ () => this.handleButtonClick('toes') } />
       </View>
     );
   }
