@@ -23,6 +23,13 @@ export default class App extends Component<Props> {
 
   componentDidMount() {
     this.randomItemGen()
+    Alert.alert(
+      'Ready to play?',
+      'Press start to begin.',
+      [
+        {text: 'Start', onPress: () => this.displayKeilsList() }
+      ]
+      )
   }
 
   randomItemGen = () => {
@@ -58,6 +65,7 @@ export default class App extends Component<Props> {
     if (keilsList[keilsList.length -1] === item) {
       console.log('hell yeah')
       this.randomItemGen()
+      this.displayKeilsList()
     } else {
       this.handleGameOver()
       this.setState({ keilsList: [] })
@@ -67,7 +75,6 @@ export default class App extends Component<Props> {
   handleButtonClick = (item) => {
     this.checkItems(item)
     console.log(this.state.keilsList)
-    this.displayKeilsList()
   }
 
   displayKeilsList = () => {
@@ -82,9 +89,9 @@ export default class App extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={ styles.container }>
         <Text>Welcome to Keil Says!</Text>
-        <Text>{ this.state.currentItem }</Text>
+        <Text style={ styles.itemName }>{ this.state.currentItem }</Text>
         <Button title='Melvin DIPA'
                 onPress={ () => this.handleButtonClick('melvin') } />
         <Button title='Sparkle the dog'
@@ -105,14 +112,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  itemName: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
