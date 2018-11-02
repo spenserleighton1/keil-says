@@ -9,23 +9,27 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  handleButtonClick = (id) => {
+    console.log(id)
+  }
+
   render() {
     return (
       <View style={styles.container}>
         {/*<Text>Keil Says<Text />*/}
-        <Button title='RED' />
-        <Button title='GREEN' />
-        <Button title='BLUE' />
-        <Button title='YELLOW' />
+        <Button title='RED'
+                onPress={ () => this.handleButtonClick('red') } />
+        <Button title='GREEN'
+                onPress={ () => this.handleButtonClick('green') } />
+        <Button title='BLUE'
+                onPress={ () => this.handleButtonClick('blue') } />
+        <Button title='YELLOW'
+                onPress={ () => this.handleButtonClick('yellow') } />
       </View>
     );
   }
