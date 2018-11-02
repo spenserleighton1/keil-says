@@ -13,6 +13,17 @@ import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor() {
+    super()
+    this.state = {
+      keilsThings = {
+        1: 'green',
+        2: 'red',
+        3: 'blue',
+        4: 'yellow'
+      }
+    }
+  }
 
   handleButtonClick = (id) => {
     console.log(id)
