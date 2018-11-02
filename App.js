@@ -41,21 +41,18 @@ export default class App extends Component<Props> {
     })
   }
 
-  addItemToKeilsList = () => {}
-
   checkItems = (item) => {
-    let index = 0;
-    if (item === this.state.keilsList[index]) {
+    if (this.state.keilsList[this.state.keilsList.length -1] === item) {
       console.log('hell yeah')
-      index = index += 1;
+      this.randomItemGen()
     } else {
       console.log('hell no')
-      index = 0;
     }
   }
 
   handleButtonClick = (item) => {
     this.checkItems(item)
+    console.log(this.state.keilsList)
     //if the item matches the index in array continue to next index else FAIL
 
   }
