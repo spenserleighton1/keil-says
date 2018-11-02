@@ -16,13 +16,19 @@ export default class App extends Component<Props> {
   constructor() {
     super()
     this.state = {
-      keilsThings = {
-        1: 'green',
-        2: 'red',
-        3: 'blue',
-        4: 'yellow'
-      }
+      keilsMemory: []
     }
+  }
+
+  randomItemGen = () => {
+    let keilsThings = {
+        1: 'Melvin DIPA',
+        2: 'Sparkle the dog',
+        3: 'Captain Ron VHS tape',
+        4: 'Toes'
+      },
+    let itemIndex = Math.round(Math.random() * 4)
+    let item = keilsThings[itemIndex]
   }
 
   handleButtonClick = (id) => {
@@ -32,15 +38,15 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        {/*<Text>Keil Says<Text />*/}
-        <Button title='RED'
-                onPress={ () => this.handleButtonClick('red') } />
-        <Button title='GREEN'
-                onPress={ () => this.handleButtonClick('green') } />
-        <Button title='BLUE'
-                onPress={ () => this.handleButtonClick('blue') } />
-        <Button title='YELLOW'
-                onPress={ () => this.handleButtonClick('yellow') } />
+        <Text>Welcome to Keil Says!</Text>
+        <Button title='Melvin DIPA'
+                onPress={ () => this.handleButtonClick('Melvin') } />
+        <Button title='Sparkle the dog'
+                onPress={ () => this.handleButtonClick('Sparkle') } />
+        <Button title='Captain Ron VHS tape'
+                onPress={ () => this.handleButtonClick('Captain Ron') } />
+        <Button title='Toes'
+                onPress={ () => this.handleButtonClick('Toes') } />
       </View>
     );
   }
