@@ -33,7 +33,7 @@ export default class App extends Component<Props> {
         4: 'toes'
     }
 
-    let itemIndex = Math.round(Math.random() * 4);
+    let itemIndex = Math.floor(Math.random() * 4) + 1 ;
     let item = keilsThings[itemIndex];
 
     this.setState({
