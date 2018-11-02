@@ -46,7 +46,8 @@ export default class App extends Component<Props> {
       console.log('hell yeah')
       this.randomItemGen()
     } else {
-      console.log('hell no')
+      console.log('hell no, game over')
+      this.setState({ keilsList: [] })
     }
   }
 
