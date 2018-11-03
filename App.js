@@ -17,7 +17,8 @@ export default class App extends Component<Props> {
     super()
     this.state = {
       currentItem: '',
-      keilsList: []
+      keilsList: [],
+      itemIndex: 0
     }
   }
 
@@ -49,7 +50,10 @@ export default class App extends Component<Props> {
   }
 
   handleGameOver = () => {
-    this.setState({ currentItem: '' })
+    this.setState({ 
+      currentItem: '',
+      itemIndex: 0 
+    })
     Alert.alert(
       'Game OVER, Tubehead',
       'Start over',
@@ -65,13 +69,11 @@ export default class App extends Component<Props> {
   }
 
   checkItems = (item) => {
-    let { keilsList } = this.state
-    let index = keilsList.length -1 
-    console.log(index)
+    let { keilsList, itemIndex } = this.state
 
-    if (keilsList[index] === item) {
+    if (keilsList[itemIndex] === item) {
       this.randomItemGen()
-      this.displayKeilsList()
+      this.setState({ itemIndex: itemIndex += 1})
     } else {
       this.setState({ keilsList: [] })
       this.handleGameOver()
@@ -80,6 +82,7 @@ export default class App extends Component<Props> {
 
   handleButtonClick = (item) => {
     this.checkItems(item)
+    this.displayKeilsList()
   }
 
   displayKeilsList = () => {
