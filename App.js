@@ -74,6 +74,7 @@ export default class App extends Component<Props> {
     if (keilsList[itemIndex] === item) {
       this.randomItemGen()
       this.setState({ itemIndex: itemIndex += 1})
+      return this.displayKeilsList()
     } else {
       this.setState({ keilsList: [] })
       this.handleGameOver()
@@ -82,19 +83,20 @@ export default class App extends Component<Props> {
 
   handleButtonClick = (item) => {
     this.checkItems(item)
-    this.displayKeilsList()
   }
 
   displayKeilsList = () => {
     let { keilsList } = this.state
+    this.setState({ currentItem: '' })
 
-    keilsList.forEach(currentItem => {
+    keilsList.forEach((currentItem, index) => {
       setTimeout(() => {
-        console.log(currentItem)
+        console.log(this.state.currentItem, this.state.keilsList);
         this.setState({ currentItem })
-      }, 1000)
-    })
+      }, index * 1000);    
+    });
   }
+
 
   render() {
     return (
