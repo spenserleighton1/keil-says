@@ -1,15 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, Alert} from 'react-native';
-
-
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -30,7 +20,7 @@ export default class App extends Component<Props> {
       [
         {text: 'Start', onPress: () => this.displayKeilsList() }
       ]
-      )
+    )
   }
 
   randomItemGen = () => {
@@ -73,8 +63,8 @@ export default class App extends Component<Props> {
 
     if (keilsList[itemIndex] === item) {
       this.randomItemGen()
-      this.setState({ itemIndex: itemIndex += 1})
-      return this.displayKeilsList()
+      this.setState({ itemIndex: 1})
+      this.displayKeilsList(keilsList)
     } else {
       this.setState({ keilsList: [] })
       this.handleGameOver()
@@ -86,12 +76,10 @@ export default class App extends Component<Props> {
   }
 
   displayKeilsList = () => {
-    let { keilsList } = this.state
-    this.setState({ currentItem: '' })
-
-    keilsList.forEach((currentItem, index) => {
+    this.state.keilsList.forEach((currentItem, index) => {
+      this.setState({ currentItem: '' })
       setTimeout(() => {
-        console.log(this.state.currentItem, this.state.keilsList);
+        console.log(index, currentItem)
         this.setState({ currentItem })
       }, index * 1000);    
     });
