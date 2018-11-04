@@ -76,10 +76,10 @@ export default class App extends Component<Props> {
   }
 
   displayKeilsList = () => {
+    console.log(this.state.keilsList)
     this.state.keilsList.forEach((currentItem, index) => {
       this.setState({ currentItem: '' })
       setTimeout(() => {
-        console.log(index, currentItem)
         this.setState({ currentItem })
       }, index * 1000);    
     });
@@ -87,10 +87,11 @@ export default class App extends Component<Props> {
 
 
   render() {
+    
     return (
       <View style={ styles.container }>
         <Text>Welcome to Keil Says!</Text>
-        <Text style={ styles.itemName }>{ this.state.currentItem }</Text>
+        <Text style={ styles.itemName }>{ this.state.itemIndex, this.state.currentItem }</Text>
         <Button title='Melvin DIPA'
                 onPress={ () => this.handleButtonClick('melvin') } />
         <Button title='Sparkle the dog'
