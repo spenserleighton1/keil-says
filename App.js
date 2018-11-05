@@ -16,13 +16,14 @@ export default class App extends Component<Props> {
     }
   }
 
+
   componentDidMount() {
     this.randomItemGen()
     Alert.alert(
       'Ready to play?',
       'Press start to begin.',
       [
-        {text: 'Start', onPress: () => this.displaykeilsPattern() }
+        {text: 'Start', onPress: () => this.displayKeilsPattern() }
       ]
     )
   }
@@ -47,7 +48,7 @@ export default class App extends Component<Props> {
     this.setState({ 
       playersPattern: [],
       keilsPattern: [],
-      itemIndex: 0 
+      level: 0 
     })
   }
 
@@ -59,7 +60,7 @@ export default class App extends Component<Props> {
       [
         {text: 'Restart', onPress: () => {
           this.randomItemGen()
-          this.displaykeilsPattern()
+          this.displayKeilsPattern()
           }
         },
       ],
@@ -67,20 +68,40 @@ export default class App extends Component<Props> {
     )
   }
 
-  updatePlayersPattern = (item) => {
-    this.setState({
-      playersPattern: [...this.state.playersPattern, item]
-    })
-
-    //check response
-    this.checkPlayersResponse()
-  }
-
   levelUp = () => {
     this.setState({
+      playersPattern: [],
       level: this.state.level += 1
     })
   }
+
+  displayKeilsPattern = () => {
+    const { keilsPattern } = this.state
+    let i = 0
+    const interval = setInterval(() => {
+      this.toggle(keilsPattern[i])
+      i++
+      if(i >= keilsPattern.length) {
+        clearInterval(interval)
+      }
+    }, 750)
+    this.setState({ playersPattern: [] })
+  }
+
+  toggle = (item) => {
+    this.setState({ [item]: !this.state[item] })
+    setTimeout(() => {
+      this.setState({ [item]: !this.state[item] })
+    }, 500)
+  }
+
+  updatePlayersPattern = async (item) => {
+    await this.setState({
+      playersPattern: [...this.state.playersPattern, item]
+    })
+    this.checkPlayersResponse()
+  }
+
 
   checkPlayersResponse = () => {
     const { keilsPattern, playersPattern } = this.state
@@ -103,28 +124,8 @@ export default class App extends Component<Props> {
     }
   }
 
-  showPattern = () => {
-    const { keilsPattern } = this.state
-    let i = 0
-    const interval = setInterval(() => {
-      this.displaykeilsPattern(keilsPattern[i])
-      i++
-      if(i >= keilsPattern.length) {
-        clearInterval(interval)
-      }
-    }, 750)
-    this.setState({ playersPattern: [] })
-  }
-
-  displaykeilsPattern = (item) => {
-    this.setState({ [item]: !this.state[item] })
-    setTimeout(() => {
-      this.setState({ [item]: !this.state[item] })
-    }, 500)
-  }
-
-
   render() {
+    console.log(this.state.keilsPattern)
     return (
       <View style={ styles.container }>
         <Text>Welcome to Keil Says!</Text>
