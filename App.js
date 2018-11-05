@@ -6,9 +6,13 @@ export default class App extends Component<Props> {
   constructor() {
     super()
     this.state = {
-      currentItem: '',
-      keilsList: [],
-      itemIndex: 0
+      playersPattern: [],
+      keilsPattern: [],
+      itemIndex: 0,
+      melvin: false,
+      sparkle: false,
+      ron: false,
+      toes: false
     }
   }
 
@@ -18,7 +22,7 @@ export default class App extends Component<Props> {
       'Ready to play?',
       'Press start to begin.',
       [
-        {text: 'Start', onPress: () => this.displayKeilsList() }
+        {text: 'Start', onPress: () => this.displaykeilsPattern() }
       ]
     )
   }
@@ -35,22 +39,27 @@ export default class App extends Component<Props> {
     let item = keilsThings[itemIndex];
 
     this.setState({
-      keilsList: [...this.state.keilsList, item]
+      keilsPattern: [...this.state.keilsPattern, item]
+    })
+  }
+
+  resetGame = () => {
+    this.setState({ 
+      playersPattern: [],
+      keilsPattern: [],
+      itemIndex: 0 
     })
   }
 
   handleGameOver = () => {
-    this.setState({ 
-      currentItem: '',
-      itemIndex: 0 
-    })
+    this.resetGame()
     Alert.alert(
       'Game OVER, Tubehead',
       'Start over',
       [
         {text: 'Restart', onPress: () => {
           this.randomItemGen()
-          this.displayKeilsList()
+          this.displaykeilsPattern()
           }
         },
       ],
@@ -59,26 +68,30 @@ export default class App extends Component<Props> {
   }
 
   checkItems = (item) => {
-    let { keilsList, itemIndex } = this.state
+    let { keilsPattern, itemIndex } = this.state
 
-    if (keilsList[itemIndex] === item) {
+    if (keilsPattern[itemIndex] === item) {
+      this.setState({ itemIndex: itemIndex += 1})
       this.randomItemGen()
-      this.setState({ itemIndex: 1})
-      this.displayKeilsList(keilsList)
+      this.displaykeilsPattern()
     } else {
-      this.setState({ keilsList: [] })
+      this.setState({ keilsPattern: [] })
       this.handleGameOver()
     }
+  }
+
+  updatePlayersPattern = (item) => {
+    this.setState({
+      playersPattern: [...this.state.playersPattern, item]
+    })
   }
 
   handleButtonClick = (item) => {
     this.checkItems(item)
   }
 
-  displayKeilsList = () => {
-    console.log(this.state.keilsList)
-    this.state.keilsList.forEach((currentItem, index) => {
-      this.setState({ currentItem: '' })
+  displaykeilsPattern = () => {
+    this.state.keilsPattern.forEach((currentItem, index) => {
       setTimeout(() => {
         this.setState({ currentItem })
       }, index * 1000);    
@@ -87,7 +100,8 @@ export default class App extends Component<Props> {
 
 
   render() {
-    
+    console.log(this.state.keilsPattern, this.state.itemIndex)
+
     return (
       <View style={ styles.container }>
         <Text>Welcome to Keil Says!</Text>
