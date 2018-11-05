@@ -89,9 +89,7 @@ export default class App extends Component<Props> {
   }
 
   toggle = (item) => {
-    console.log(item)
     this.setState({ [item]: !this.state[item] })
-    console.log(this.state[item])
     setTimeout(() => {
       this.setState({ [item]: !this.state[item] })
     }, 500)
@@ -130,16 +128,24 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={ styles.container }>
-        <Text>Welcome to Keil Says!</Text>
-        <Text style={ styles.itemName }>{ this.state.level }</Text>
-        <Button title='Melvin DIPA'
-                onPress={ () => this.updatePlayersPattern('melvin') } />
-        <Button title='Sparkle the dog'
-                onPress={ () => this.updatePlayersPattern('sparkle') } />
-        <Button title='Captain Ron VHS tape'
-                onPress={ () => this.updatePlayersPattern('ron') } />
-        <Button title='Toes'
-                onPress={ () => this.updatePlayersPattern('toes') } />
+        <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
+        <Text style={ styles.itemName }>Level: { this.state.level }</Text>
+        <Button
+          color={this.state.melvin ? 'red' : ''}
+          title='Melvin DIPA'
+          onPress={ () => this.updatePlayersPattern('melvin') } />
+        <Button
+          color={this.state.sparkle ? 'red' : ''}
+          title='Sparkle the dog'
+          onPress={ () => this.updatePlayersPattern('sparkle') } />
+        <Button
+          color={this.state.ron ? 'red' : ''}
+          title='Captain Ron VHS tape'
+          onPress={ () => this.updatePlayersPattern('ron') } />
+        <Button
+          color={this.state.toes ? 'red' : ''}
+          title='Toes'
+          onPress={ () => this.updatePlayersPattern('toes') } />
       </View>
     );
   }
@@ -156,5 +162,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  welcome: {
+    fontSize: 30
+  },
+  active: {
+    fontSize: 25,
+    color: 'red'
   }
-});
+})
