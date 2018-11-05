@@ -8,7 +8,7 @@ export default class App extends Component<Props> {
     this.state = {
       playersPattern: [],
       keilsPattern: [],
-      itemIndex: 0,
+      level: 0,
       melvin: false,
       sparkle: false,
       ron: false,
@@ -67,53 +67,76 @@ export default class App extends Component<Props> {
     )
   }
 
-  checkItems = (item) => {
-    let { keilsPattern, itemIndex } = this.state
-
-    if (keilsPattern[itemIndex] === item) {
-      this.setState({ itemIndex: itemIndex += 1})
-      this.randomItemGen()
-      this.displaykeilsPattern()
-    } else {
-      this.setState({ keilsPattern: [] })
-      this.handleGameOver()
-    }
-  }
-
   updatePlayersPattern = (item) => {
     this.setState({
       playersPattern: [...this.state.playersPattern, item]
     })
+
+    //check response
+    this.checkPlayersResponse()
   }
 
-  handleButtonClick = (item) => {
-    this.checkItems(item)
+  levelUp = () => {
+    this.setState({
+      level: this.state.level += 1
+    })
   }
 
-  displaykeilsPattern = () => {
-    this.state.keilsPattern.forEach((currentItem, index) => {
-      setTimeout(() => {
-        this.setState({ currentItem })
-      }, index * 1000);    
-    });
+  checkPlayersResponse = () => {
+    const { keilsPattern, playersPattern } = this.state
+    const lastItem = playersPattern.length - 1
+    if (playersPattern[lastItem] !== keilsPattern[lastItem]) {
+      this.handleGameOver()
+    } else {
+      if (playersPattern.length === keilsPattern.length) {
+        Alert.alert(
+          'Dude, cool! keep playing?',
+          'Press start to begin.',
+          [
+            {text: 'Start', onPress: () => {
+              this.levelUp()
+              this.randomItemGen()
+            } }
+          ]
+        )
+      }
+    }
+  }
+
+  showPattern = () => {
+    const { keilsPattern } = this.state
+    let i = 0
+    const interval = setInterval(() => {
+      this.displaykeilsPattern(keilsPattern[i])
+      i++
+      if(i >= keilsPattern.length) {
+        clearInterval(interval)
+      }
+    }, 750)
+    this.setState({ playersPattern: [] })
+  }
+
+  displaykeilsPattern = (item) => {
+    this.setState({ [item]: !this.state[item] })
+    setTimeout(() => {
+      this.setState({ [item]: !this.state[item] })
+    }, 500)
   }
 
 
   render() {
-    console.log(this.state.keilsPattern, this.state.itemIndex)
-
     return (
       <View style={ styles.container }>
         <Text>Welcome to Keil Says!</Text>
-        <Text style={ styles.itemName }>{ this.state.itemIndex, this.state.currentItem }</Text>
+        <Text style={ styles.itemName }>{ this.state.level }</Text>
         <Button title='Melvin DIPA'
-                onPress={ () => this.handleButtonClick('melvin') } />
+                onPress={ () => this.updatePlayersPattern('melvin') } />
         <Button title='Sparkle the dog'
-                onPress={ () => this.handleButtonClick('sparkle') } />
+                onPress={ () => this.updatePlayersPattern('sparkle') } />
         <Button title='Captain Ron VHS tape'
-                onPress={ () => this.handleButtonClick('ron') } />
+                onPress={ () => this.updatePlayersPattern('ron') } />
         <Button title='Toes'
-                onPress={ () => this.handleButtonClick('toes') } />
+                onPress={ () => this.updatePlayersPattern('toes') } />
       </View>
     );
   }
