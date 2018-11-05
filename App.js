@@ -89,7 +89,9 @@ export default class App extends Component<Props> {
   }
 
   toggle = (item) => {
+    console.log(item)
     this.setState({ [item]: !this.state[item] })
+    console.log(this.state[item])
     setTimeout(() => {
       this.setState({ [item]: !this.state[item] })
     }, 500)
@@ -117,6 +119,7 @@ export default class App extends Component<Props> {
             {text: 'Start', onPress: () => {
               this.levelUp()
               this.randomItemGen()
+              this.displayKeilsPattern()
             } }
           ]
         )
@@ -125,7 +128,6 @@ export default class App extends Component<Props> {
   }
 
   render() {
-    console.log(this.state.keilsPattern)
     return (
       <View style={ styles.container }>
         <Text>Welcome to Keil Says!</Text>
