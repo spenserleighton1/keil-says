@@ -111,7 +111,7 @@ export default class App extends Component<Props> {
     } else {
       if (playersPattern.length === keilsPattern.length) {
         Alert.alert(
-          'Dude, cool! keep playing?',
+          'Dude, cool! Level Up!',
           'Press start to begin.',
           [
             {text: 'Start', onPress: () => {
