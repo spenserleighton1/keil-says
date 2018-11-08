@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, Button, Alert, TouchableOpacity, Image } from 'react-native';
-import Pad from './Pad'
 import ron from './images/ron.png'
 import melvin from './images/tube.png'
 
@@ -132,10 +131,6 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={ styles.container }>
-{/*      <Pad 
-        image={ ron }
-        onPress={ () => this.updatePlayersPattern('melvin') }
-      />*/}
         <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
         <Text style={ styles.itemName }>Level: { this.state.level }</Text>
         <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
@@ -144,6 +139,7 @@ export default class App extends Component<Props> {
             source={ melvin }
           />
         </TouchableOpacity>
+
         <Button
           color={this.state.sparkle ? 'red' : ''}
           title='Sparkle the dog'
