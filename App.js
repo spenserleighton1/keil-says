@@ -5,6 +5,7 @@ import melvin from './images/tube.png';
 import sparkle from './images/sparkle.png';
 import toes from './images/png-feet-1.png';
 import keil from './images/keil.png';
+import keilSays from './images/keil-says.png';
 
 
 
@@ -136,37 +137,41 @@ export default class App extends Component<Props> {
     return (
       <View style={ styles.container }>
         <Image 
+          style={ styles.keilSaysBanner }
+          source={ keilSays } />
+        <Image 
           style={ styles.keilImage } 
           source={ keil } 
         />
-        <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
-        <Text style={ styles.itemName }>Level: { this.state.level }</Text>
-        <View style={ styles.buttonContainer }>
-          <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
-            <Image
-              style={ this.state.melvin ? styles.active : styles.button }
-              source={ melvin }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={ () => this.updatePlayersPattern('toes') }>
-            <Image
-              style={ this.state.toes ? styles.active : styles.button}
-              source={ toes }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={ () => this.updatePlayersPattern('ron') }>
-            <Image
-              style={ this.state.ron ? styles.active : styles.button}
-              source={ ron }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={ () => this.updatePlayersPattern('sparkle') }>
-            <Image
-              style={ this.state.sparkle ? styles.active : styles.button}
-              source={ sparkle }
-            />
-          </TouchableOpacity>
+        <View style={ styles.gameContainer }>
+          <View style={ styles.buttonContainer }>
+            <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
+              <Image
+                style={ this.state.melvin ? styles.active : styles.button }
+                source={ melvin }
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ () => this.updatePlayersPattern('toes') }>
+              <Image
+                style={ this.state.toes ? styles.active : styles.button}
+                source={ toes }
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ () => this.updatePlayersPattern('ron') }>
+              <Image
+                style={ this.state.ron ? styles.active : styles.button}
+                source={ ron }
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ () => this.updatePlayersPattern('sparkle') }>
+              <Image
+                style={ this.state.sparkle ? styles.active : styles.button}
+                source={ sparkle }
+              />
+            </TouchableOpacity>
+          </View>
         </View>
+          <Text style={ styles.level }>LEVEL: { this.state.level }</Text>
       </View>
     );
   }
@@ -178,49 +183,68 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#07889b',
+  },
+  gameContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#66b9bf',
+    borderRadius: 10,
+    height: 420,
+    position: 'absolute',
+    top: 240,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
   },
   buttonContainer: {
-    maxHeight: 500,
-    flex: 1,
-    flexWrap: 'wrap',  
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    height: 400
   },
   button: {
-    width: 190,
-    height: 190,
-    borderRadius: 20,
+    width: 180,
+    height: 180,
+    borderRadius: 10,
     padding: 10,
-    marginBottom: 20,
+    margin: 10,
     shadowColor: '#303838',
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     shadowOpacity: 0.15,
   },
   active: {
-    width: 190,
-    height: 190,
-    backgroundColor: 'red',
-    borderRadius: 20,
+    width: 180,
+    height: 180,
+    backgroundColor: '#eeaa7b',
+    borderRadius: 10,
     padding: 10,
-    marginBottom: 20,
+    margin: 10,
     shadowColor: '#303838',
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     shadowOpacity: 0.15,
   },
-  itemName: {
+  level: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    position: 'absolute',
+    bottom: 25,
+    color: 'white'
   },
-  welcome: {
-    fontSize: 30
+  keilSaysBanner: {
+    width: 400,
+    height: 170,
+    color: '#e37222',
+    position: 'absolute',
+    top: 30
   },
   keilImage: {
-    height: 200,
-    width: 300,
+    height: 240,
+    width: 360,
     zIndex: 1,
     position: 'absolute',
-    top: 50
+    top: 80
   }
 })
