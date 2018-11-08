@@ -6,5 +6,13 @@ class Pad extends Component {
     super()
   }
 
-  
+  render() {
+    return(
+      <View>
+        <h1>Test</h1>
+      </View>
+      )
+  }
 }
+
+export default Pad;
