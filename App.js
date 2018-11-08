@@ -145,10 +145,10 @@ export default class App extends Component<Props> {
         />
         <View style={ styles.gameContainer }>
           <View style={ styles.buttonContainer }>
-            <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
+            <TouchableOpacity onPress={ () => this.updatePlayersPattern('sparkle') }>
               <Image
-                style={ this.state.melvin ? styles.active : styles.button }
-                source={ melvin }
+                style={ this.state.sparkle ? styles.active : styles.button}
+                source={ sparkle }
               />
             </TouchableOpacity>
             <TouchableOpacity onPress={ () => this.updatePlayersPattern('toes') }>
@@ -163,10 +163,10 @@ export default class App extends Component<Props> {
                 source={ ron }
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={ () => this.updatePlayersPattern('sparkle') }>
+            <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
               <Image
-                style={ this.state.sparkle ? styles.active : styles.button}
-                source={ sparkle }
+                style={ this.state.melvin ? styles.active : styles.button }
+                source={ melvin }
               />
             </TouchableOpacity>
           </View>
