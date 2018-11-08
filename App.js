@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Alert} from 'react-native';
+import { Platform, StyleSheet, Text, View, Button, Alert, TouchableOpacity, Image } from 'react-native';
 import Pad from './Pad'
+import ron from './images/ron.png'
+import melvin from './images/tube.png'
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -129,13 +132,18 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={ styles.container }>
-      <Pad />
+{/*      <Pad 
+        image={ ron }
+        onPress={ () => this.updatePlayersPattern('melvin') }
+      />*/}
         <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
         <Text style={ styles.itemName }>Level: { this.state.level }</Text>
-        <Button
-          color={this.state.melvin ? 'red' : ''}
-          title='Melvin DIPA'
-          onPress={ () => this.updatePlayersPattern('melvin') } />
+        <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
+          <Image
+            style={styles.button}
+            source={ melvin }
+          />
+        </TouchableOpacity>
         <Button
           color={this.state.sparkle ? 'red' : ''}
           title='Sparkle the dog'
@@ -159,6 +167,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  button: {
+    width: 100,
+    height: 100,
+    backgroundColor: '#859a9b',
+    borderRadius: 20,
+    padding: 10,
+    marginBottom: 20,
+    shadowColor: '#303838',
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    shadowOpacity: 0.35,
   },
   itemName: {
     fontSize: 20,

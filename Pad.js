@@ -2,18 +2,25 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 
 class Pad extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {
     return(
       <View>
-        <Text>Test</Text>
-        <Image source= />
+        <Image 
+          source={ this.props.image }
+          style={{width: 100, height: 100}} />
       </View>
       )
   }
 }
+
+// const styles = StyleSheet.create({
+//   image: {
+//     width: 25px;
+//   }
+// })
 
 export default Pad;
