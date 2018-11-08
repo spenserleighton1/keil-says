@@ -4,6 +4,7 @@ import ron from './images/ron.png';
 import melvin from './images/tube.png';
 import sparkle from './images/sparkle.png';
 import toes from './images/png-feet-1.png';
+import keil from './images/keil.png';
 
 
 
@@ -134,6 +135,10 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={ styles.container }>
+        <Image 
+          style={ styles.keilImage } 
+          source={ keil } 
+        />
         <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
         <Text style={ styles.itemName }>Level: { this.state.level }</Text>
         <View style={ styles.buttonContainer }>
@@ -178,13 +183,11 @@ const styles = StyleSheet.create({
   buttonContainer: {
     maxHeight: 500,
     flex: 1,
-    flexWrap: 'wrap',
-    // justifyContent: 'space-between',    
+    flexWrap: 'wrap',  
   },
   button: {
     width: 190,
     height: 190,
-    // backgroundColor: '#859a9b',
     borderRadius: 20,
     padding: 10,
     marginBottom: 20,
@@ -212,5 +215,12 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 30
+  },
+  keilImage: {
+    height: 200,
+    width: 300,
+    zIndex: 1,
+    position: 'absolute',
+    top: 50
   }
 })
