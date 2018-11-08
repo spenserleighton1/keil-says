@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, Button, Alert, TouchableOpacity, Image } from 'react-native';
-import ron from './images/ron.png'
-import melvin from './images/tube.png'
+import ron from './images/ron.png';
+import melvin from './images/tube.png';
+import sparkle from './images/sparkle.png';
+import toes from './images/png-feet-1.png';
+
 
 
 type Props = {};
@@ -133,25 +136,32 @@ export default class App extends Component<Props> {
       <View style={ styles.container }>
         <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
         <Text style={ styles.itemName }>Level: { this.state.level }</Text>
-        <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
-          <Image
-            style={styles.button}
-            source={ melvin }
-          />
-        </TouchableOpacity>
-
-        <Button
-          color={this.state.sparkle ? 'red' : ''}
-          title='Sparkle the dog'
-          onPress={ () => this.updatePlayersPattern('sparkle') } />
-        <Button
-          color={this.state.ron ? 'red' : ''}
-          title='Captain Ron VHS tape'
-          onPress={ () => this.updatePlayersPattern('ron') } />
-        <Button
-          color={this.state.toes ? 'red' : ''}
-          title='Toes'
-          onPress={ () => this.updatePlayersPattern('toes') } />
+        <View style={ styles.buttonContainer }>
+          <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
+            <Image
+              style={styles.button}
+              source={ melvin }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={ () => this.updatePlayersPattern('toes') }>
+            <Image
+              style={styles.button}
+              source={ toes }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={ () => this.updatePlayersPattern('ron') }>
+            <Image
+              style={styles.button}
+              source={ ron }
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={ () => this.updatePlayersPattern('sparkle') }>
+            <Image
+              style={styles.button}
+              source={ sparkle }
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -160,13 +170,20 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  buttonContainer: {
+    maxHeight: 500,
+    flex: 1,
+    flexWrap: 'wrap',
+    // justifyContent: 'space-between',    
+  },
   button: {
-    width: 100,
-    height: 100,
+    width: 190,
+    height: 190,
     backgroundColor: '#859a9b',
     borderRadius: 20,
     padding: 10,
@@ -174,7 +191,7 @@ const styles = StyleSheet.create({
     shadowColor: '#303838',
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.15,
   },
   itemName: {
     fontSize: 20,
