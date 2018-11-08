@@ -139,25 +139,25 @@ export default class App extends Component<Props> {
         <View style={ styles.buttonContainer }>
           <TouchableOpacity onPress={ () => this.updatePlayersPattern('melvin') }>
             <Image
-              style={styles.button}
+              style={ this.state.melvin ? styles.active : styles.button }
               source={ melvin }
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={ () => this.updatePlayersPattern('toes') }>
             <Image
-              style={styles.button}
+              style={ this.state.toes ? styles.active : styles.button}
               source={ toes }
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={ () => this.updatePlayersPattern('ron') }>
             <Image
-              style={styles.button}
+              style={ this.state.ron ? styles.active : styles.button}
               source={ ron }
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={ () => this.updatePlayersPattern('sparkle') }>
             <Image
-              style={styles.button}
+              style={ this.state.sparkle ? styles.active : styles.button}
               source={ sparkle }
             />
           </TouchableOpacity>
@@ -184,7 +184,19 @@ const styles = StyleSheet.create({
   button: {
     width: 190,
     height: 190,
-    backgroundColor: '#859a9b',
+    // backgroundColor: '#859a9b',
+    borderRadius: 20,
+    padding: 10,
+    marginBottom: 20,
+    shadowColor: '#303838',
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    shadowOpacity: 0.15,
+  },
+  active: {
+    width: 190,
+    height: 190,
+    backgroundColor: 'red',
     borderRadius: 20,
     padding: 10,
     marginBottom: 20,
@@ -200,9 +212,5 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 30
-  },
-  active: {
-    fontSize: 25,
-    color: 'red'
   }
 })
