@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button, Alert} from 'react-native';
+import Pad from './Pad'
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -128,6 +129,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={ styles.container }>
+      <Pad />
         <Text style={ styles.welcome}>Welcome to Keil Says!</Text>
         <Text style={ styles.itemName }>Level: { this.state.level }</Text>
         <Button

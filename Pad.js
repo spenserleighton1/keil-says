@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Alert} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 
 class Pad extends Component {
   constructor() {
@@ -9,7 +9,8 @@ class Pad extends Component {
   render() {
     return(
       <View>
-        <h1>Test</h1>
+        <Text>Test</Text>
+        <Image source= />
       </View>
       )
   }
